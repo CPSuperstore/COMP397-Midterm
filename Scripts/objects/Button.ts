@@ -4,13 +4,14 @@ module objects
     {
         
         // constructor
-        constructor(imagePath:Object = config.Game.ASSETS.getResult("button")
-            , x:number = 0, y:number= 0, isCentered:boolean = false)
+        constructor(imagePath:Object = config.Game.ASSETS.getResult("button"), x:number = 0, y:number= 0, isCentered:boolean = false, action:() => void = null)
         {
             super(imagePath, x, y, isCentered);
 
             this.on("mouseover", this.MouseOver);
             this.on("mouseout", this.MouseOut);
+
+            if (action != null) this.on("click", action);
 
             this.Start();
         }

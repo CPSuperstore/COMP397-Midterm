@@ -10,6 +10,14 @@ var Game = (function () {
     var assets;
     var assetManifest = [
         { id: "button", src: "./Assets/images/button.png" },
+        { id: "blank", src: "./Assets/images/blank.png" },
+        { id: "dice1", src: "./Assets/images/1.png" },
+        { id: "dice2", src: "./Assets/images/2.png" },
+        { id: "dice3", src: "./Assets/images/3.png" },
+        { id: "dice4", src: "./Assets/images/4.png" },
+        { id: "dice5", src: "./Assets/images/5.png" },
+        { id: "dice6", src: "./Assets/images/6.png" },
+        { id: "rollButton", src: "./Assets/images/rollButton.png" },
         { id: "placeholder", src: "./Assets/images/placeholder.png" },
         { id: "startButton", src: "./Assets/images/startButton.png" },
         { id: "nextButton", src: "./Assets/images/nextButton.png" },

@@ -17,14 +17,17 @@ var objects;
     var Button = /** @class */ (function (_super) {
         __extends(Button, _super);
         // constructor
-        function Button(imagePath, x, y, isCentered) {
+        function Button(imagePath, x, y, isCentered, action) {
             if (imagePath === void 0) { imagePath = config.Game.ASSETS.getResult("button"); }
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
             if (isCentered === void 0) { isCentered = false; }
+            if (action === void 0) { action = null; }
             var _this = _super.call(this, imagePath, x, y, isCentered) || this;
             _this.on("mouseover", _this.MouseOver);
             _this.on("mouseout", _this.MouseOut);
+            if (action != null)
+                _this.on("click", action);
             _this.Start();
             return _this;
         }
