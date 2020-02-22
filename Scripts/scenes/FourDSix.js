@@ -14,35 +14,36 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var Start = /** @class */ (function (_super) {
-        __extends(Start, _super);
+    var FourDSix = /** @class */ (function (_super) {
+        __extends(FourDSix, _super);
+        // PRIVATE INSTANCE MEMBERS
         // PUBLIC PROPERTIES
         // CONSTRUCTOR
-        function Start() {
+        function FourDSix() {
             var _this = _super.call(this) || this;
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
         // PUBLIC METHODS
-        Start.prototype.Start = function () {
-            //instantiate a new Text object
-            this._welcomeLabel = new objects.Label("COMP397 - Midterm Test", "40px", "Consolas", "#000000", 320, 180, true);
-            // buttons
-            this._startButton = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 430, true);
+        //initialize and instatiate
+        FourDSix.prototype.Start = function () {
+            this._diceManager = new objects.DiceManager(4);
+            // allows me to use the "this" keyword in a different scope
+            var parent = this;
+            this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 320, 430, true, function () {
+                parent._diceManager.Roll();
+            });
             this.Main();
         };
-        Start.prototype.Update = function () {
+        FourDSix.prototype.Update = function () {
         };
-        Start.prototype.Main = function () {
-            this.addChild(this._welcomeLabel);
-            this.addChild(this._startButton);
-            this._startButton.on("click", function () {
-                config.Game.SCENE = scenes.State.FOUR_D_SIX;
-            });
+        FourDSix.prototype.Main = function () {
+            this._diceManager.init(this);
+            this.addChild(this._rollButton);
         };
-        return Start;
+        return FourDSix;
     }(objects.Scene));
-    scenes.Start = Start;
+    scenes.FourDSix = FourDSix;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=Start.js.map
+//# sourceMappingURL=FourDSix.js.map
