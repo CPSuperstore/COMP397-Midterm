@@ -12,6 +12,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * @filename Dice.ts
+ * @author Christopher Palazzolo (300934032)
+ * @date 2020/02/22
+ * @description This class handles a single dice which is rolled, and generates a value
+ */
 var objects;
 (function (objects) {
     var Dice = /** @class */ (function (_super) {

@@ -1,3 +1,9 @@
+/**
+ * @filename Dice.ts
+ * @author Christopher Palazzolo (300934032)
+ * @date 2020/02/22
+ * @description This class handles a single dice which is rolled, and generates a value
+ */
 module objects
 {
     export class Dice extends GameObject
