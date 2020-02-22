@@ -37,7 +37,7 @@ module scenes
         public Start(): void 
         {
             // create the link to 4D6 mode
-            this._fourDSix = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 300, true);
+            this._fourDSix = new objects.Button(config.Game.ASSETS.getResult("4d6"), 320, 300, true);
 
             // create the dice manager with 2 dice
             this._diceManager = new objects.DiceManager(2);
