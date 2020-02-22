@@ -17,16 +17,21 @@ var objects;
     var Dice = /** @class */ (function (_super) {
         __extends(Dice, _super);
         // constructor
-        function Dice(x, y, isCentered) {
+        function Dice(x, y) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
-            if (isCentered === void 0) { isCentered = false; }
-            var _this = _super.call(this, config.Game.ASSETS.getResult("blank"), x, y, isCentered) || this;
+            var _this = _super.call(this, config.Game.ASSETS.getResult("blank"), x, y, true) || this;
+            _this.rolling = false;
+            _this.x += _this.width / 2;
+            _this.y += _this.height / 2;
             _this.value = -1;
-            _this.label = new objects.Label("", undefined, undefined, undefined, x + (_this.image.width / 2), y + _this.image.height + 10);
+            _this.label = new objects.Label("", undefined, undefined, undefined, x + (_this.image.width / 2), y + _this.image.height + 30);
             _this.Start();
             return _this;
         }
+        Dice.prototype.IsRolling = function () {
+            return this.rolling;
+        };
         Dice.prototype.init = function (stage) {
             this.realStage = stage;
             this.realStage.addChild(this);
@@ -44,10 +49,21 @@ var objects;
             this.name = "Dice";
         };
         Dice.prototype.Update = function () {
+            if (this.rolling) {
+                this.rotation += 5;
+            }
+            if (this.rotation == 360) {
+                this.rotation = 0;
+                this.rolling = false;
+                this.UpdateRoll();
+            }
         };
         Dice.prototype.Reset = function () {
         };
         Dice.prototype.Roll = function () {
+            this.rolling = true;
+        };
+        Dice.prototype.UpdateRoll = function () {
             this.value = this.getNextNumber();
             console.log("dice" + this.value);
             this.image = new createjs.Bitmap(config.Game.ASSETS.getResult("dice" + this.value)).image;

@@ -34,9 +34,11 @@ var scenes;
             this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 320, 430, true, function () {
                 parent._diceManager.Roll();
             });
+            createjs.Ticker.on("tick", this.Update);
             this.Main();
         };
         FourDSix.prototype.Update = function () {
+            this._diceManager.Update();
         };
         FourDSix.prototype.Main = function () {
             this._diceManager.init(this);

@@ -33,7 +33,6 @@ module scenes
         
         public Update(): void 
         {
-
         }
         
         public Main(): void 
@@ -46,7 +45,7 @@ module scenes
             this.addChild(this._startButton);
 
             this._startButton.on("click", ()=>{
-                config.Game.SCENE = scenes.State.FOUR_D_SIX;
+                config.Game.SCENE = scenes.State.PLAY;
             });
 
         }

@@ -38,7 +38,7 @@ var scenes;
             this.addChild(this._welcomeLabel);
             this.addChild(this._startButton);
             this._startButton.on("click", function () {
-                config.Game.SCENE = scenes.State.FOUR_D_SIX;
+                config.Game.SCENE = scenes.State.PLAY;
             });
         };
         return Start;

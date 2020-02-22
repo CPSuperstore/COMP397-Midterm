@@ -1,8 +1,7 @@
 module objects
 {
     export class Button extends GameObject
-    {
-        
+    {        
         // constructor
         constructor(imagePath:Object = config.Game.ASSETS.getResult("button"), x:number = 0, y:number= 0, isCentered:boolean = false, action:() => void = null)
         {

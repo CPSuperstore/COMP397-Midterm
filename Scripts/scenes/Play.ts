@@ -3,7 +3,9 @@ module scenes
     export class Play extends objects.Scene
     {
         private _diceManager: objects.DiceManager;
-        private _rollButton: objects.Button
+        private _rollButton: objects.Button;
+        private _fourDSix: objects.Button;
+
 
         // PRIVATE INSTANCE MEMBERS
  
@@ -25,7 +27,10 @@ module scenes
         //initialize and instatiate
         public Start(): void 
         {
-            this._diceManager = new objects.DiceManager(3);
+            this._fourDSix = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 300, true);
+
+
+            this._diceManager = new objects.DiceManager(2);
 
             // allows me to use the "this" keyword in a different scope
             let parent = this;
@@ -33,18 +38,26 @@ module scenes
                 parent._diceManager.Roll();
             });
 
+            createjs.Ticker.on("tick", this.Update);
+
+
             this.Main();
         }        
         
         public Update(): void 
         {
-
+            this._diceManager.Update();
         }
         
         public Main(): void 
         {
-            this._diceManager.init(this)
+            this._fourDSix.on("click", ()=>{
+                config.Game.SCENE = scenes.State.FOUR_D_SIX;
+            });
+
+            this._diceManager.init(this);
             this.addChild(this._rollButton);
+            this.addChild(this._fourDSix);
 
 
         }

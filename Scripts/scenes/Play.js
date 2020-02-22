@@ -28,19 +28,26 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
-            this._diceManager = new objects.DiceManager(3);
+            this._fourDSix = new objects.Button(config.Game.ASSETS.getResult("startButton"), 320, 300, true);
+            this._diceManager = new objects.DiceManager(2);
             // allows me to use the "this" keyword in a different scope
             var parent = this;
             this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 320, 430, true, function () {
                 parent._diceManager.Roll();
             });
+            createjs.Ticker.on("tick", this.Update);
             this.Main();
         };
         Play.prototype.Update = function () {
+            this._diceManager.Update();
         };
         Play.prototype.Main = function () {
+            this._fourDSix.on("click", function () {
+                config.Game.SCENE = scenes.State.FOUR_D_SIX;
+            });
             this._diceManager.init(this);
             this.addChild(this._rollButton);
+            this.addChild(this._fourDSix);
         };
         return Play;
     }(objects.Scene));

@@ -32,13 +32,14 @@ module scenes
             this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 320, 430, true, function(){
                 parent._diceManager.Roll();
             });
+            createjs.Ticker.on("tick", this.Update);
 
             this.Main();
         }        
         
         public Update(): void 
         {
-
+            this._diceManager.Update();
         }
         
         public Main(): void 

@@ -4,17 +4,25 @@ module objects
     {       
         private value:number;
         private label:objects.Label;
-        private realStage:objects.Scene
+        private realStage:objects.Scene;
+
+        private rolling:boolean = false;
+
 
         // constructor
-        constructor(x:number = 0, y:number= 0, isCentered:boolean = false)
+        constructor(x:number = 0, y:number= 0)
         {
-            super(config.Game.ASSETS.getResult("blank"), x, y, isCentered);
+            super(config.Game.ASSETS.getResult("blank"), x, y, true);
+            this.x += this.width / 2;
+            this.y += this.height / 2;
+
             this.value = -1;
-            this.label = new objects.Label("", undefined, undefined, undefined, x + (this.image.width / 2), y + this.image.height + 10);
+            this.label = new objects.Label("", undefined, undefined, undefined, x + (this.image.width / 2), y + this.image.height + 30);
             this.Start();
         }
-
+        public IsRolling():boolean{
+            return this.rolling;
+        }
         public init(stage:objects.Scene){
             this.realStage = stage;
             this.realStage.addChild(this);
@@ -36,14 +44,23 @@ module objects
         }
 
         public Update(): void {
-            
+            if(this.rolling){
+                this.rotation += 5;
+            }
+            if (this.rotation == 360){
+                this.rotation = 0;
+                this.rolling = false;
+                this.UpdateRoll();
+            }
         }
 
         public Reset(): void {
             
         }
-
-        public Roll(): void {
+        public Roll():void{
+            this.rolling = true;
+        }
+        public UpdateRoll(): void {
             this.value = this.getNextNumber();
             console.log("dice" + this.value)
             this.image = new createjs.Bitmap(config.Game.ASSETS.getResult("dice" + this.value)).image;
