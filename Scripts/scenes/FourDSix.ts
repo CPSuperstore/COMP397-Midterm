@@ -48,6 +48,8 @@ module scenes
         
         public Main(): void 
         {
+            this.addChild(new objects.Image(config.Game.ASSETS.getResult("background")))
+
             this._regularMode.on("click", ()=>{
                 config.Game.SCENE = scenes.State.PLAY;
             });

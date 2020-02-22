@@ -42,6 +42,7 @@ var scenes;
             this._diceManager.Update();
         };
         FourDSix.prototype.Main = function () {
+            this.addChild(new objects.Image(config.Game.ASSETS.getResult("background")));
             this._regularMode.on("click", function () {
                 config.Game.SCENE = scenes.State.PLAY;
             });

@@ -42,6 +42,7 @@ var scenes;
             this._diceManager.Update();
         };
         Play.prototype.Main = function () {
+            this.addChild(new objects.Image(config.Game.ASSETS.getResult("background")));
             this._fourDSix.on("click", function () {
                 config.Game.SCENE = scenes.State.FOUR_D_SIX;
             });
