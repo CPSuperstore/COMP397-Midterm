@@ -10,6 +10,7 @@ var Game = (function () {
     var assets;
     var assetManifest = [
         { id: "button", src: "./Assets/images/button.png" },
+        { id: "background", src: "./Assets/images/background.png" },
         { id: "blank", src: "./Assets/images/blank.png" },
         { id: "dice1", src: "./Assets/images/1.png" },
         { id: "dice2", src: "./Assets/images/2.png" },

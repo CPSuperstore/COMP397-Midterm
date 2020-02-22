@@ -28,6 +28,7 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         FourDSix.prototype.Start = function () {
+            this._regularMode = new objects.Button(config.Game.ASSETS.getResult("backButton"), 320, 300, true);
             this._diceManager = new objects.DiceManager(4);
             // allows me to use the "this" keyword in a different scope
             var parent = this;
@@ -41,8 +42,12 @@ var scenes;
             this._diceManager.Update();
         };
         FourDSix.prototype.Main = function () {
+            this._regularMode.on("click", function () {
+                config.Game.SCENE = scenes.State.PLAY;
+            });
             this._diceManager.init(this);
             this.addChild(this._rollButton);
+            this.addChild(this._regularMode);
         };
         return FourDSix;
     }(objects.Scene));
